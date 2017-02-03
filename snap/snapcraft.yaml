@@ -1,0 +1,29 @@
+name: kakoune
+version: '0.1'
+summary: Vim inspired editor, with an orthoganal design
+description: |
+    Kakoune is a code editor heavily inspired by Vim, as such most of its
+    commands are similar to vi’s ones, and it shares Vi’s "keystrokes as a text
+    editing language" model.
+grade: devel
+confinement: classic
+apps:
+    kakoune:
+        command: kak
+    kak:
+        command: kak
+parts:
+  make:
+    plugin: make
+    make-parameters: ["-C", src, "debug=no", "static=yes", "PREFIX="]
+    source: ./
+    build-packages:
+        - libboost-all-dev
+        - libncursesw5-dev
+        - asciidoc
+        - xsltproc
+    prime:
+        - bin/
+        - share/
+
+
